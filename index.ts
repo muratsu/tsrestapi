@@ -12,6 +12,7 @@ mongoose.connection.on('error', () => {
   throw new Error(`unable to connect to database: ${config.db}`);
 });
 
+// tslint:disable-next-line
 const debug = require('debug')('express-mongoose-ts-rest-api:index');
 
 // listen on port config.port

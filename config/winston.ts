@@ -1,4 +1,4 @@
-let winston = require('winston');
+import * as winston from 'winston';
 
 const logger = new (winston.Logger)({
   transports: [

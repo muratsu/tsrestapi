@@ -1,9 +1,8 @@
 {
   "compilerOptions": {
-    "target": "es5",
+    "target": "es6",
     "module": "commonjs",
     "declaration": false,
-    "removeComments": true,
     "noLib": false,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
@@ -14,7 +13,8 @@
     "noImplicitAny": true,
     "noImplicitReturns": true,
     "noImplicitUseStrict": false,
-    "noFallthroughCasesInSwitch": true
+    "noFallthroughCasesInSwitch": true,
+    "removeComments": false
   },
   "exclude": [
     "node_modules",

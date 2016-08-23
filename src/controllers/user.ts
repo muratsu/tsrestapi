@@ -1,19 +1,19 @@
-import {User, IUserModel} from '../models/user';
-import * as express from "express";
+import {USER, IUserModel} from '../models/user';
+import * as express from 'express';
 
 /**
  * Load user and append to req.
  */
 let load: express.RequestParamHandler = async function (req, res, next, id) {
   try {
-    let user = User.get(id);
+    let user = await USER.get(id);
     req.params.user = user;
     return next();
-  } catch(e) {
+  } catch (e) {
     next(e);
     return;
   }
-}
+};
 
 /**
  * Get user
@@ -21,7 +21,7 @@ let load: express.RequestParamHandler = async function (req, res, next, id) {
  */
 let get: express.RequestHandler = (req, res) => {
   return res.json(req.params.user);
-}
+};
 
 /**
  * Create new user
@@ -41,7 +41,7 @@ let create: express.RequestHandler = (req, res, next) => {
     return;
   }
 
-  const user = new User({
+  const user = new USER({
     username: req.body.username,
     mobileNumber: req.body.mobileNumber
   });
@@ -53,7 +53,7 @@ let create: express.RequestHandler = (req, res, next) => {
     }
     res.json(savedUser);
   });
-}
+};
 
 /**
  * Update existing user
@@ -73,7 +73,7 @@ let update: express.RequestHandler = (req, res, next) => {
     }
     res.json(savedUser);
   });
-}
+};
 
 /**
  * Get user list.
@@ -84,14 +84,14 @@ let update: express.RequestHandler = (req, res, next) => {
 let list: express.RequestHandler = async function (req, res, next) {
   const { limit = 50, skip = 0 } = req.query;
   try {
-    let users = await User.list({ limit, skip });
+    let users = await USER.list({ limit, skip });
     res.json(users);
     return;
-  } catch(e) {
+  } catch (e) {
     next(e);
     return;
   }
-}
+};
 
 /**
  * Delete user.
@@ -100,13 +100,13 @@ let list: express.RequestHandler = async function (req, res, next) {
 let remove: express.RequestHandler = async function (req, res, next) {
   const user = req.params.user;
   try {
-    let deletedUser: IUserModel = user.removeAsync();
+    let deletedUser: IUserModel = await user.removeAsync();
     res.json(deletedUser);
     return;
-  } catch(e) {
+  } catch (e) {
     next(e);
     return;
   }
-}
+};
 
 export default { load, get, create, update, list, remove };

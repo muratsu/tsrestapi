@@ -9,17 +9,17 @@ import APIError from '../helpers/APIError';
 // export type IUserModel = IUser & mongoose._mongoose._Model<IUser>;
 
 interface IUserDocument extends mongoose.Document {
-  username: string,
-  mobileNumber: string,
-  createdAt: Date
+  username: string;
+  mobileNumber: string;
+  createdAt: Date;
 };
 
 interface IUserStatics {
-  get(id: number): Promise<IUserDocument>,
-  list({}: {skip: number, limit: number}): Promise<IUserDocument[]>,
+  get(id: number): Promise<IUserDocument>;
+  list({}: {skip: number, limit: number}): Promise<IUserDocument[]>;
 }
 
-const UserSchema = new mongoose.Schema({
+const userSchema = new mongoose.Schema({
   username: {
     type: String,
     required: true
@@ -45,27 +45,26 @@ const UserSchema = new mongoose.Schema({
 /**
  * Methods
  */
-UserSchema.method({
+userSchema.method({
 });
 
 /**
  * Statics
  */
-UserSchema.statics = {
+userSchema.statics = {
   /**
    * Get user
    * @param {ObjectId} id - The objectId of user.
    * @returns {Promise<User, APIError>}
    */
-  get(id: number) {
-    return this.findById(id)
-      .execAsync().then((user: any) => {
-        if (user) {
+  async get(id: number) {
+      try {
+          let user = await this.findById(id).execAsync();
           return user;
-        }
-        const err = new APIError('No such user exists!', httpStatus.NOT_FOUND);
-        return Promise.reject(err);
-      });
+      } catch (e) {
+          let err = new APIError('No such user exists!', httpStatus.NOT_FOUND);
+          return Promise.reject(err);
+      }
   },
 
   /**
@@ -87,4 +86,4 @@ UserSchema.statics = {
  * @typedef User
  */
 export type IUserModel = IUserDocument & IUserStatics & mongoose._mongoose._Model<IUserDocument>;
-export const User = mongoose.model<IUserDocument, IUserStatics>('User', UserSchema);
+export const USER = mongoose.model<IUserDocument, IUserStatics>('User', userSchema);

@@ -2,7 +2,8 @@ import * as request from 'supertest-as-promised';
 import * as httpStatus from 'http-status';
 import * as chai from 'chai';
 import { expect } from 'chai';
-import app from '../../index';
+// import app from '../../index';
+let app = require('../../dist/index').default;
 
 chai.config.includeStack = true;
 
@@ -12,8 +13,8 @@ describe('## User APIs', () => {
     mobileNumber: string,
     _id?: string
   } = {
-    username: 'KK123',
-    mobileNumber: '1234567890'
+    "username": "KK123",
+    "mobileNumber": "1234567890"
   };
 
   describe('# POST /api/users', () => {
@@ -45,7 +46,7 @@ describe('## User APIs', () => {
 
     it('should report error with message - Not found, when user does not exists', (done) => {
       request(app)
-        .get('/api/users/56c787ccc67fc16ccc1a5e92')
+        .get('/api/users/foobar')
         .expect(httpStatus.NOT_FOUND)
         .then(res => {
           expect(res.body.message).to.equal('Not Found');

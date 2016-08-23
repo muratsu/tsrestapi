@@ -53,11 +53,6 @@
     "winston": "^2.1.1"
   },
   "devDependencies": {
-    "babel-cli": "6.5.1",
-    "babel-core": "^6.9.1",
-    "babel-plugin-add-module-exports": "0.1.2",
-    "babel-preset-es2015": "6.5.0",
-    "babel-preset-stage-2": "6.5.0",
     "chai": "^3.4.1",
     "commitizen": "^2.8.2",
     "coveralls": "^2.11.6",
@@ -67,7 +62,6 @@
     "eslint-config-airbnb": "5.0.1",
     "ghooks": "^1.2.4",
     "gulp": "^3.9.1",
-    "gulp-babel": "6.1.2",
     "gulp-env": "^0.4.0",
     "gulp-eslint": "^1.1.1",
     "gulp-istanbul": "1.0.0",
@@ -77,22 +71,23 @@
     "gulp-nodemon": "^2.0.6",
     "gulp-plumber": "^1.0.1",
     "gulp-sourcemaps": "^1.6.0",
+    "gulp-tslint": "^6.1.1",
     "gulp-typescript": "^2.13.6",
     "gulp-util": "^3.0.7",
     "gulpclass": "^0.1.1",
-    "isparta": "4.0.0",
     "mocha": "2.5.3",
     "run-sequence": "^1.1.5",
     "supertest": "^1.1.0",
     "supertest-as-promised": "3.1.0",
     "ts-node": "^1.2.2",
+    "tslint": "^3.15.1",
     "typescript": "^1.8.10",
     "validate-commit-msg": "^2.6.1"
   },
   "license": "MIT",
   "config": {
     "ghooks": {
-      "pre-commit": "npm run lint && npm test",
+      "pre-push": "npm test",
       "commit-msg": "validate-commit-msg"
     },
     "commitizen": {

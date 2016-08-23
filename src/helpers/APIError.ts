@@ -12,12 +12,12 @@ class ExtendableError extends Error {
 
   constructor(message: string, status: number, isPublic: boolean) {
     super(message);
-    this.name = "APIError.ExtendableError";
+    this.name = 'APIError.ExtendableError';
     this.message = message;
     this.status = status;
     this.isPublic = isPublic;
-    this.isOperational = true; // This is required since bluebird 4 doesn't append it anymore.
-    Error.captureStackTrace(this, <any>"APIError.ExtendableError");//, (<any>this).constructor.name);
+    this.isOperational = true; // this is required since bluebird 4 doesn't append it anymore.
+    Error.captureStackTrace(this, <any>'APIError.ExtendableError'); // , (<any>this).constructor.name);
   }
 }
 
