@@ -35,6 +35,12 @@ export class Gulpfile {
     return del(['dist/**', 'coverage/**', '!dist', '!coverage']);
   }
 
+  // clean up docs directory
+  @Task('clean-docs')
+  cleanDocs() {
+    return del(['docs/**', '!docs']);
+  }
+
   // set env variables
   @Task('set-env')
   setEnv(cb: Function) {
@@ -63,10 +69,29 @@ export class Gulpfile {
   @Task('copy')
   copy() {
     return gulp.src(paths.nonJs)
-        .pipe(plugins.newer('dist'))
-        .pipe(gulp.dest('dist'));
+      .pipe(plugins.newer('dist'))
+      .pipe(gulp.dest('dist'));
   }
 
+  // generate docs from TypeScript files
+  @Task('docs', ['clean-docs'])
+  docs() {
+    return gulp.src([...paths.ts, '!gulpfile.ts'], { base: '.' })
+      .pipe(plugins.typedoc({
+        module: 'commonjs',
+        target: 'es6',
+        includeDeclarations: true,
+
+        // typedoc options
+        out: './docs',
+        name: 'Rest Api Project',
+        theme: 'default',
+        excludeExternals: true,
+        // plugins: ["my", "plugins"],
+        ignoreCompilerErrors: false,
+        version: true
+      }));
+  }
 
   // compile TypeScript to ES5 and copy to dist
   @Task('typescript')

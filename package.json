@@ -12,6 +12,7 @@
   "scripts": {
     "start": "gulp serve",
     "build": "gulp",
+    "docs": "gulp docs",
     "lint": "gulp lint",
     "test": "gulp mocha",
     "commit": "git-cz",
@@ -72,6 +73,7 @@
     "gulp-plumber": "^1.0.1",
     "gulp-sourcemaps": "^1.6.0",
     "gulp-tslint": "^6.1.1",
+    "gulp-typedoc": "^2.0.0",
     "gulp-typescript": "^2.13.6",
     "gulp-util": "^3.0.7",
     "gulpclass": "^0.1.1",
@@ -81,6 +83,7 @@
     "supertest-as-promised": "3.1.0",
     "ts-node": "^1.2.2",
     "tslint": "^3.15.1",
+    "typedoc": "^0.4.5",
     "typescript": "^1.8.10",
     "validate-commit-msg": "^2.6.1"
   },
