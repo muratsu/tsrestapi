@@ -36,7 +36,7 @@ export class Gulpfile {
   }
 
   // clean up docs directory
-  @Task('clean-docs')
+  @Task('clean:docs')
   cleanDocs() {
     return del(['docs/**', '!docs']);
   }
@@ -74,7 +74,7 @@ export class Gulpfile {
   }
 
   // generate docs from TypeScript files
-  @Task('docs', ['clean-docs'])
+  @Task('docs', ['clean:docs'])
   docs() {
     return gulp.src([...paths.ts, '!gulpfile.ts'], { base: '.' })
       .pipe(plugins.typedoc({
