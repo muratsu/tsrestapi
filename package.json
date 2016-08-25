@@ -1,8 +1,8 @@
 {
-  "name": "express-mongoose-es6-rest-api",
+  "name": "tsrestapi",
   "version": "1.0.0",
-  "description": "A Boilerplate application for building REST APIs using express, mongoose in ES6 with code coverage",
-  "author": "Kunal Kapadia <kunalkapadia12@gmail.com>",
+  "description": "A Boilerplate application for building REST APIs using express, mongoose in TS with code coverage",
+  "author": "Murat Sutunc <sutunc@gmail.com>",
   "main": "index.js",
   "private": false,
   "engines": {
@@ -20,7 +20,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:KunalKapadia/express-mongoose-es6-rest-api.git"
+    "url": "git@github.com:muratsu/tsrestapi.git"
   },
   "keywords": [
     "express",
@@ -28,7 +28,7 @@
     "node.js",
     "mongodb",
     "mongoose",
-    "es6",
+    "ts",
     "mocha",
     "istanbul",
     "REST",
@@ -96,14 +96,5 @@
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
     }
-  },
-  "babel": {
-    "presets": [
-      "es2015",
-      "stage-2"
-    ],
-    "plugins": [
-      "add-module-exports"
-    ]
   }
 }
